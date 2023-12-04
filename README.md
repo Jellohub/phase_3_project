@@ -28,7 +28,7 @@ NUMERIC FEATURES:
 
 CATEGORICAL FEATURES:
 - lga (Geographic location): 124 categories. 
-- public_meeting (True/False): 3 categories. 
+- public_meeting: 3 categories. 
 - extraction_type (The kind of extraction the waterpoint uses): 18 categories.  
 - management (How the waterpoint is managed): 12 categories. 
 - payment (How people pay for water at the waterpoint): 7 categories. 
