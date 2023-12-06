@@ -14,16 +14,19 @@ It is our job to use our available data to make predictions about the waterpoint
 ## Data Origin & Description
 The data was taken from **[drivendata.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/data/).**
 
-We used 7 numeric and 9 categorical variables in our models. Descriptions of any of these variables can be found **below**. Descriptions are also provided **[on the competition website] (https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/25/).**
+We used 9 numeric and 9 categorical variables in our models. Descriptions of any of these variables can be found **below**. Descriptions are also provided **[on the competition website] (https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/25/).** (You will only find a description of our engineered features here.)
 
 NUMERIC FEATURES:
 - amount_tsh: Amount of water available to each waterpoint
+- vicinity_amount_tsh: 
 - gps_height: Altitude of the well
 - longitude: GPS coordinate
 - latitude: GPS coordinate
 - num_private: number of private waterpoints available to the owner
 - population: Population around the well
 - construction_year: The year each waterpoint was constructed
+- vicinity_amount_tsh (engineered feature): average amount_tsh for wells in the vicinity
+- vicinity_population (engineered feature): average population for wells in the vicinity
 
 
 CATEGORICAL FEATURES:
@@ -35,7 +38,11 @@ CATEGORICAL FEATURES:
 - water_quality (The quality of the water): 8 categories. 
 - quantity (The quantity of water each waterpoint provides): 5 categories. 
 - source (The source of the water): 10 categories. 
-- waterpoint_type (The kind of waterpoint): 7 categories. 
+- waterpoint_type (The kind of waterpoint): 7 categories.
+
+
+**Descriptive statistics for numeric features**:
+[.describe() for numeric features here]
 
 ## Methods Justification & Value to Stakeholder
 Our current project centers around a ternary classifier, **status_group**, which categorizes a waterpoint into one of three levels of functionality. We will therefore be using a variety of classification models on our data.
@@ -47,13 +54,10 @@ This project yields a model that can generate predictions for all of the water w
 ## Limitations
 
 - The size of the dataset (roughly 60,000 records) is not optimal, limiting what our models will be able to gather.
-- We did not do any feature engineering. There was already an abundance of variables, both numeric and categorical, and most of our time was dedicated to handling the existing variables.
 - Our dataset suffered from significant class imbalances, hampering our model's ability to make good predictions in one category, "functional needs repair."
 ![Target variable distribution](/figures/counts_1.png)
 
 ## Data Cleaning
-
-**All visualizations in this README were made on the cleaned dataset.**
 
 - Models perform better without any null values or collinearity in the dataset. So we eliminated null values and any collinear variables.
     - We eliminated collinearity by looking for correlations among the categorical variables and amongst the numeric variables.
@@ -65,9 +69,10 @@ This project yields a model that can generate predictions for all of the water w
 - Furthermore, some of the categorical variables had vastly different categories between datasets. For instance, certain categorical variables had thousands of different categories in another dataset. We cannot use these variables in our model.
     - We eliminated 7 of these inconsistent categorical variables.
 - We eliminated variables that did not correlate with the target variable whatsoever.
-    - We eliminated two of these meaningless categorical variables: an ID column and a column with ony a single value in all 60,000 records.
+    - We eliminated two of these meaningless categorical variables: an ID column and a column with only a single value in all 60,000 records.
 - We one-hot encoded categorical variables and standardized numeric data to make it easier to use and interpret.
 - We performed an 80-20 train-test-split on the data.
+    - The split was performed before one-hot encoding and numerical standardization to prevent data leakage.
 
 ## Modeling
 
@@ -98,25 +103,24 @@ At the end of the notebook, I used several visualizations and metrics to compare
 
 
 ## Model predictions
-My model predictions were entered on [this competition in datadriven.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/?page=99). I sit at 4,944th place place among 15,945 participants.
+My model predictions were entered on [this competition in datadriven.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/?page=99). I sit at 4,632nd place place among 15,950 participants.
 
 
 ## Recommendations
 
-First and foremost, we generated predictions for the set of water wells that the charity organization needed predictions for. Beyond these predictions, we compiled a list of further recommendations and insights. We use accompanying visualizations.
+- First and foremost, we generated predictions for the set of water wells that the charity organization needed predictions for. Beyond these predictions, we compiled a list of further recommendations and insights. We use accompanying visualizations.
 
-We suggest that the charity organization prioritize wells that are older, since non-functionl and functional-needs-repair wells tend to be older than functional wells.
+- We suggest that the charity organization prioritize wells that are older, since non-functionl and functional-needs-repair wells tend to be older than functional wells.
 ![Construction year histogram](/figures/year_square.png)
 
-We suggest that the charity organization prioritize wells that have less water available to them, since these wells are more likely to be non functional or in need of repair.
+- We suggest that the charity organization prioritize wells that have less water available to them, since these wells are more likely to be non functional or in need of repair.
 ![Model metric visualizations](/figures/amount_tsh.png)
 
-We suggest that the charity organization consult a heatmap of where non functional and functional-needs-repair wells are concentrated to better allocate their resources.
+- We suggest that the charity organization consult a heatmap of where non functional and functional-needs-repair wells are concentrated to better allocate their resources.
 ![Model metric visualizations](/figures/heatmap_square.png)
 
-Finally, we suggest that the charity organization prioritize non functional over functional-needs-repair wells. Despite making improvements in predicting functional-needs-repair wells, we were unable to achieve satisfactory accuracy in this category. Our best model only idenfitied 43% of all wells in this category, and when the model predicted such a well, it was only correct only 38% of the time.
-
-This suggests that the category is ill-defined, and a well in "need of repair" could be almost totally fine, or almost completely broken and just barely functional.
+- Finally, we suggest that the charity organization prioritize non functional over functional-needs-repair wells. Despite making improvements in predicting functional-needs-repair wells, we were unable to achieve satisfactory accuracy in this category. Our best model only idenfitied 43% of all wells in this category, and when the model predicted such a well, it was only correct only 38% of the time.
+- This suggests that the category is ill-defined, and a well in "need of repair" could be almost totally fine, or almost completely broken and just barely functional.
 
 ## Repository Structure
 - **[data](https://github.com/Jellohub/phase_3_project/tree/master/data)**: folder containing data files.
