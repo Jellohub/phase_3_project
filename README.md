@@ -12,7 +12,7 @@ This organization wants to **fix as many of these pumps as it can**. However, th
 It is our job to use our available data to make predictions about the waterpoints that this charity organization gave us. The organization wants us to remember that non-functional waterpoints cost more to fix than functional-needs-repair waterpoints. We need to distinguish between them to the best of our ability.
 
 ## Data Origin & Description
-The data was taken from **[drivendata.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/data/).**
+The data has roughly 59,000 was taken from **[drivendata.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/data/).**
 
 We used 9 numeric and 9 categorical variables in our models. Descriptions of any of these variables can be found **below**. Descriptions are also provided **[on the competition website] (https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/25/).** (You will only find a description of our engineered features here.)
 
@@ -53,7 +53,7 @@ This project yields a model that can generate predictions for all of the water w
     
 ## Limitations
 
-- The size of the dataset (roughly 60,000 records) is not optimal, limiting what our models will be able to gather.
+- The size of the dataset (roughly 59,000 records) is not optimal, limiting what our models will be able to gather. Preferably, we would've had more data.
 - Our dataset suffered from significant class imbalances, hampering our model's ability to make good predictions in one category, "functional needs repair."
 ![Target variable distribution](/figures/counts_1.png)
 
