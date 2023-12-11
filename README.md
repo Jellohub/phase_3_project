@@ -12,9 +12,9 @@ This organization wants to **fix as many of these pumps as it can**. However, th
 It is our job to use our available data to make predictions about the waterpoints that this charity organization gave us. The organization wants us to remember that non-functional waterpoints cost more to fix than functional-needs-repair waterpoints. We need to distinguish between them to the best of our ability.
 
 ## Data Origin & Description
-The data has roughly 59,000 was taken from **[drivendata.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/data/).**
+The data has roughly 59,000 records and was taken from **[drivendata.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/data/).**
 
-We used 9 numeric and 9 categorical variables in our models. Descriptions of any of these variables can be found **below**. Descriptions are also provided **[on the competition website] (https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/25/).** (You will only find a description of our engineered features here.)
+We used 9 numeric and 9 categorical variables in our models. Descriptions of any of these variables can be found **below**. Descriptions are also provided **[on the competition website](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/page/25/).** (You will only find a description of our engineered features here.)
 
 NUMERIC FEATURES:
 - amount_tsh: Amount of water available to each waterpoint
@@ -42,7 +42,7 @@ CATEGORICAL FEATURES:
 
 
 **Descriptive statistics for numeric features**:
-[.describe() for numeric features here]
+![.describe() on numeric features](/figures/numeric_statistics.png)
 
 ## Methods Justification & Value to Stakeholder
 Our current project centers around a ternary classifier, **status_group**, which categorizes a waterpoint into one of three levels of functionality. We will therefore be using a variety of classification models on our data.
@@ -78,9 +78,9 @@ This project yields a model that can generate predictions for all of the water w
 
 **All visualizations in this README were made on the cleaned dataset.**
 
-I used an iterative modeling technique – that is, I started with a basic model and made adjustments from there. My first model was a Logistic Regression estimator with no hyperparameter adjustments on the original dataaset. My final model was an XG-Boost estimator with 6,860 additional generated instances of the 'functional needs repair' class.
+I used an iterative modeling technique – that is, I started with a basic model and made adjustments from there. My first model was a Logistic Regression estimator with no hyperparameter adjustments on the original dataaset. My final model was a Random Forest estimator with 6,860 additional generated instances of the 'functional needs repair' class.
 
-Here are the classification reports for each model:
+Here are the classification reports and confusion matrices for each model:
 ![ROC curves](/figures/reports.png)
 
 At the end of the notebook, I used several visualizations and metrics to compare these models:
@@ -103,7 +103,7 @@ At the end of the notebook, I used several visualizations and metrics to compare
 
 
 ## Model predictions
-My model predictions were entered on [this competition in datadriven.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/?page=99). I sit at 4,632nd place place among 15,950 participants.
+My model predictions were entered on [this competition on datadriven.org](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/?page=99). At the time of writing this, I sit at 4,632nd place place among 15,950 participants.
 
 
 ## Recommendations
@@ -129,7 +129,7 @@ My model predictions were entered on [this competition in datadriven.org](https:
     - X_train.csv, y_train.csv: the datasets we use to train our models.
     - predictions.csv: our predictions for the charity organization.
 - **[figures](https://github.com/Jellohub/phase_3_project/tree/master/figures)**: folder containing all visualizations used in the project notebook and presentation.
-- **[models](https://github.com/Jellohub/phase_3_project/tree/master/models)**: folder containing our pickled models.
+- **[models](https://github.com/Jellohub/phase_3_project/tree/master/models)**: This is the folder that will contain your model. It doesn't contain anything in this repo because the random forest model is too large to commit (almost 200MB).
 - **[tanzania_polygon](https://github.com/Jellohub/phase_3_project/tree/master/tanzania_polygon)**: folder containing data files for Tanzania's border shape – only used for a couple visualizations.
 - **[project notebook](https://github.com/Jellohub/phase_3_project/blob/master/notebook.ipynb)**: project notebook containing all data imports, preprocessing, analyses, models, and visualizations.
 - **[project notebook pdf](https://github.com/Jellohub/phase_3_project/blob/master/notebook.pdf)**: pdf version of project notebook.
