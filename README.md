@@ -83,7 +83,7 @@ I used an iterative modeling technique – that is, I started with a basic model
 Here are the classification reports for each model. They provide the F1 score, accuracy, etc:
 ![Classification reports](/figures/reports.png)
 
-Here are the confusion matrices for each model. The rows of the confusion matrices are the actual values, and the columns represent predicted values. For example, there were 617 functional wells that were classified as non functional. You want most values to be clustered along the main diagonal – this means that most of the time, each category was correctly classified. We tried to avoid values being placed in the top right cell of the matrix – this means that non functional wells were classified as functional, which left communities without water. You can see that, in our best model, more values were concentrated on the main diagonal, and less values were stored in the top right cell of the matrix:
+Here are the confusion matrices for each model. The rows of the confusion matrices are the actual values, and the columns represent predicted values. For example, in our base model, there were 618 functional wells classified as non-functional. You want most values to be clustered along the main diagonal – this means that most of the time, each category was correctly classified. We tried to avoid values being placed in the top right cell of the matrix – this means that non functional wells were classified as functional, which left communities without water. You can see that, in our best model, more values were concentrated on the main diagonal, and less values were stored in the top right cell of the matrix:
 ![Confusion matrices](/figures/confusion_matrices.png)
 
 
